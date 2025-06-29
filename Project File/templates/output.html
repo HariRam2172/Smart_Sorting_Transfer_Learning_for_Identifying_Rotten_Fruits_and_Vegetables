@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriGaze - Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <section class="prediction-result-section section">
+        <div class="container">
+            <h2 class="section-title">Prediction Result</h2>
+            <div class="result-content">
+                {% if prediction_text %}
+                    <p>Uploaded Image:</p>
+                    <img src="{{ image_path }}" alt="Uploaded Image">
+                    <p class="prediction-text">{{ prediction_text }}</p>
+                {% else %}
+                    <p>No prediction available or an error occurred.</p>
+                {% endif %}
+            </div>
+            <a href="/" class="btn-primary back-to-home">Upload Another Image</a>
+        </div>
+    </section>
+</body>
+</html>
