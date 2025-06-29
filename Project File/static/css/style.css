@@ -1,0 +1,612 @@
+/* In static/css/style.css */
+
+/* Modern Color Palette - Adapted for Light Theme with Green Accents */
+:root {
+    --primary-text-color: #333; /* Dark text for most content */
+    --secondary-text-color: #666; /* Slightly lighter dark text for paragraphs */
+    --background-light: #ffffff; /* Main background color (used for content blocks) */
+    --background-dark-solid: #1a1a1a; /* Dark for navbar, footer, NutriGaze logo */
+    --accent-green: #2ecc71; /* Vibrant green for buttons, highlights, active states */
+    --accent-reddish: #e74c3c; /* Reddish for "ABOUT" background, specific highlights */
+    --border-color-light: #ddd; /* Light border for elements */
+    --shadow-light: rgba(0,0,0,0.1); /* Subtle shadow for light theme */
+    --shadow-dark: rgba(0,0,0,0.3); /* Stronger shadow for elements on light background */
+    --content-bg-alpha: rgba(255, 255, 255, 0.9); /* Semi-transparent white for content blocks */
+}
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--primary-text-color);
+    margin: 0;
+    line-height: 1.6;
+
+    /* Background image for the entire body */
+    /* IMPORTANT: Double-check 'assests' vs 'assets' in your actual file system */
+    background-image: url('../assests/images/smart_sort_bg.jpg'); /* Ensure this path is correct */
+    background-size: cover; /* Covers the entire body */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Makes the background fixed while content scrolls */
+    background-color: #f0f0f0; /* Fallback color in case image doesn't load */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hidden class for SPA functionality */
+.hidden {
+    display: none !important; /* Use !important to ensure it overrides other display properties */
+}
+
+/* General Section Styling */
+.section {
+    padding: 80px 20px;
+    margin: 0 auto;
+    background-color: var(--content-bg-alpha); /* Semi-transparent white background */
+    box-shadow: 0 5px 20px var(--shadow-light); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 40px; /* Space between sections */
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: var(--background-dark-solid); /* Dark background */
+    color: white;
+    padding: 1rem 0;
+    position: sticky; /* Stays at the top when scrolling */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it's on top of other content */
+    box-shadow: 0 2px 10px var(--shadow-dark); /* Subtle shadow below navbar */
+}
+
+.navbar .container {
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between; /* Pushes brand to left, nav to right */
+    align-items: center; /* Vertically center items */
+    max-width: 1200px; /* Max width of content */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Horizontal padding */
+}
+
+.navbar-brand {
+    color: white; /* White text for brand */
+    font-size: 2rem; /* Larger font size */
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease; /* Smooth color transition on hover/active */
+}
+
+.navbar-brand:hover {
+    color: var(--accent-green); /* Green on hover */
+}
+
+.navbar-nav {
+    list-style: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Enable Flexbox for nav items */
+}
+
+.navbar-nav li {
+    margin-left: 30px; /* Spacing between nav items */
+}
+
+.navbar-nav a {
+    color: white; /* White text for links */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+    position: relative; /* For the underline effect */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.navbar-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Starts hidden */
+    height: 2px;
+    background-color: var(--accent-green); /* Green underline */
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease; /* Smooth width transition for underline */
+}
+
+.navbar-nav a:hover::after,
+.navbar-nav a.active::after { /* Active state for current page / section */
+    width: 100%; /* Shows underline on hover/active */
+}
+
+.navbar-nav a:hover,
+.navbar-nav a.active {
+    color: var(--accent-green); /* Green on hover/active */
+}
+
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 150px 20px; /* More vertical padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Taller hero section */
+    /* Hero specific background image */
+    /* IMPORTANT: Double-check 'assests' vs 'assets' in your actual file system */
+    background-image: url('../assests/images/nutrigaze_hero_bg.jpg'); /* Specific hero background image */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Parallax effect */
+    margin-top: -1px; /* To prevent gap with navbar due to sticky position */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Darker overlay for text readability */
+    z-index: 1; /* Ensures overlay is above background image */
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2; /* Ensures text is above overlay */
+}
+
+.hero-subheading {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #e0e0e0; /* Slightly off-white for sub-heading */
+}
+
+.hero-section h1 {
+    font-size: 4.5rem; /* Larger heading */
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.hero-section p.hero-description {
+    font-size: 1.4rem; /* Larger paragraph */
+    margin-bottom: 50px;
+    max-width: 900px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* General Button Styles */
+.btn-primary, .btn-secondary, .btn-predict {
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--accent-green); /* Green button for primary action */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #27ae60; /* Darker green on hover */
+    transform: translateY(-3px); /* Lifts the button */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2); /* Stronger shadow on hover */
+}
+
+.btn-secondary { /* For "Learn More" in About section */
+    background-color: transparent;
+    color: var(--primary-text-color);
+    border: 2px solid var(--accent-green);
+    font-size: 1rem;
+    padding: 10px 25px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.btn-predict {
+    background-color: var(--accent-green); /* Green predict button */
+    color: white;
+    width: auto; /* Allow button to size naturally */
+    max-width: 200px; /* Max width for consistency */
+}
+
+.btn-predict:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    font-size: 3rem; /* Larger titles */
+    color: var(--primary-text-color); /* Dark text */
+    margin-bottom: 60px;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; /* Deeper underline */
+    left: 50%;
+    transform: translateX(-50%); /* Center the underline */
+    width: 100px; /* Longer underline */
+    height: 5px; /* Thicker underline */
+    background-color: var(--accent-green); /* Green underline */
+    border-radius: 3px;
+}
+
+/* About Section Specifics */
+.about-section-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    gap: 40px;
+    justify-content: center; /* Center columns when they wrap */
+    align-items: flex-start; /* Align content to the top */
+    color: var(--secondary-text-color); /* Lighter dark text for paragraphs */
+}
+
+.about-column {
+    flex: 1; /* Make columns take equal space */
+    min-width: 300px; /* Minimum width before wrapping */
+    padding: 20px;
+    line-height: 1.8;
+}
+
+.about-section-content p {
+    margin-bottom: 20px;
+}
+
+.about-section-content ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin-top: 20px;
+}
+
+.about-section-content ul li {
+    position: relative;
+    padding-left: 30px; /* Space for the custom bullet */
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.about-section-content ul li::before {
+    content: '\f00c'; /* Font Awesome checkmark icon */
+    font-family: 'Font Awesome 5 Free'; /* Or 'Font Awesome 6 Free' */
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--accent-green); /* Green checkmark */
+    top: 0;
+}
+
+.about-heading-accent {
+    display: inline-block;
+    background-color: var(--accent-reddish); /* Reddish background for "ABOUT" */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px; /* Space below the accent */
+}
+
+/* Predict Section */
+.predict-section {
+    text-align: center;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 600px; /* Confine form width */
+    margin: 0 auto;
+    padding: 40px; /* Internal padding for the form area */
+    background-color: var(--background-light); /* White background */
+    border: 1px solid var(--border-color-light);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+}
+
+.upload-form label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-text-color);
+}
+
+.upload-form input[type="file"] {
+    border: 1px solid var(--border-color-light);
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    color: var(--primary-text-color);
+    background-color: var(--background-light);
+    cursor: pointer;
+}
+/* Style for the "Choose File" button part of the input type="file" */
+.upload-form input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--accent-green);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-form input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #27ae60;
+}
+
+
+/* Team Members */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px; /* Increased gap */
+    text-align: center;
+}
+
+.team-member {
+    background-color: var(--background-light); /* White background for team member cards */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--shadow-light); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color-light); /* Light border */
+}
+
+.team-member:hover {
+    transform: translateY(-8px); /* More pronounced lift */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+}
+
+.team-member img {
+    width: 130px; /* Slightly larger image */
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--accent-green); /* Green border */
+    box-shadow: 0 0 0 3px var(--border-color-light); /* Inner ring for contrast */
+}
+
+.team-member h3 {
+    font-size: 1.8rem;
+    color: var(--primary-text-color);
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    margin-bottom: 15px;
+    min-height: 4em; /* Ensure consistent height for bios */
+}
+
+.team-member .social-links a {
+    color: var(--secondary-text-color); /* Darker social icons */
+    font-size: 1.6rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.team-member .social-links a:hover {
+    transform: translateY(-3px);
+}
+
+/* Specific hover colors for LinkedIn and GitHub */
+.team-member .social-links a .fa-linkedin:hover {
+    color: #0077B5; /* LinkedIn blue */
+}
+
+.team-member .social-links a .fa-github:hover {
+    color: #333333; /* GitHub dark gray */
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+}
+
+.contact-section p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--secondary-text-color);
+}
+
+.contact-section a {
+    color: var(--accent-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+.contact-section .social-links {
+    margin-top: 30px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 0.95rem;
+    background-color: var(--background-dark-solid); /* Dark background */
+    color: white;
+    padding: 40px 20px; /* More padding */
+    margin-top: 0;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* Output Page Specifics (for output.html) */
+.prediction-result-section {
+    min-height: 80vh; /* Ensure it takes up enough space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px; /* Consistent padding */
+    margin: 0 auto; /* Center content */
+    background-color: var(--background-light); /* White background for this page */
+    box-shadow: 0 5px 20px var(--shadow-light); /* Subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.prediction-result-section .result-content {
+    background-color: var(--background-light); /* White background for the result box */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px var(--shadow-light);
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    margin-bottom: 30px;
+    color: var(--primary-text-color);
+}
+
+.prediction-result-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 25px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid var(--border-color-light);
+}
+
+.prediction-text {
+    margin-top: 30px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-text-color); /* Dark text for light background */
+}
+
+.prediction-text span {
+    color: var(--accent-green); /* Highlight prediction in green */
+}
+
+.back-to-home {
+    margin-top: 20px; /* Space between result and button */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+    .hero-section p.hero-description {
+        font-size: 1.2rem;
+    }
+    .section-title {
+        font-size: 2.5rem;
+    }
+    .about-section-content {
+        flex-direction: column;
+    }
+    .about-column {
+        min-width: unset;
+        width: 100%;
+        padding: 0;
+    }
+    .section { /* Adjust padding for sections on smaller screens */
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column; /* Stack brand and nav links */
+        align-items: center; /* Center items when stacked */
+    }
+    .navbar-nav {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .navbar-nav li {
+        margin: 0 10px 10px;
+    }
+    .hero-section {
+        padding: 100px 20px;
+    }
+    .hero-section h1 {
+        font-size: 2.8rem;
+    }
+    .hero-section p.hero-description {
+        font-size: 1rem;
+    }
+    .section {
+        padding: 40px 20px;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.8rem;
+    }
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    .hero-subheading {
+        font-size: 1rem;
+    }
+    .hero-section p.hero-description {
+        font-size: 0.9rem;
+    }
+    .btn-primary, .btn-secondary, .btn-predict {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .upload-form {
+        padding: 25px;
+    }
+    .upload-form input[type="file"] {
+        max-width: 100%;
+    }
+    .section {
+        padding: 30px 15px;
+    }
+}
